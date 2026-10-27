@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Think in 360°: Benchmarking and Bootstrapping Panoramic Video Reasoning. PanoVideoBench, PanoVideoCoT, and PanoVideoReasoner.">
+  <meta property="og:title" content="Think in 360°">
+  <meta property="og:description" content="Benchmarking and Bootstrapping Panoramic Video Reasoning">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/teaser.webp">
+  <title>Think in 360°: Benchmarking and Bootstrapping Panoramic Video Reasoning</title>
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <link rel="stylesheet" href="styles.css?v=refined">
+  <script src="site-config.js" defer></script>
+  <script src="assets/paper-data.js" defer></script>
+  <script src="app.js?v=refined" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#abstract">Skip to content</a>
+  <main id="top">
+    <header class="publication-header container">
+      <img class="project-logo" src="assets/logo.png" alt="Think in 360° logo" width="120" height="91" fetchpriority="high">
+      <h1>Think in 360°: Benchmarking and Bootstrapping Panoramic Video Reasoning</h1>
+      <div class="authors" aria-label="Paper authors">
+        <span>Lidong Lu<sup>1</sup></span><span>Lidong Zou<sup>1</sup></span><span>Xinyi Mao<sup>1</sup></span><span>Jiaxin Lv<sup>1</sup></span><span>Zhenquan Li<sup>1</sup></span><span>Liangrui Dong<sup>1</sup></span><span>Tong Lu<sup>1</sup></span><span>Guo Chen<sup>2</sup></span>
+      </div>
+      <p class="affiliations"><span><sup>1</sup> Nanjing University</span><span><sup>2</sup> NVIDIA</span></p>
+      <div class="resource-links" aria-label="Project resources">
+        <a class="resource" href="#" data-resource="paperUrl" target="_blank" rel="noopener">Paper</a>
+        <a class="resource" href="https://huggingface.co/datasets/lulidong/PanoVideoBench" data-resource="benchmarkUrl" target="_blank" rel="noopener">Benchmark</a>
+        <a class="resource" href="https://huggingface.co/datasets/lulidong/PanoVideoCoT" data-resource="datasetUrl" target="_blank" rel="noopener">Dataset</a>
+        <a class="resource" href="https://huggingface.co/lulidong/PanoVideoReasoner" data-resource="modelUrl" target="_blank" rel="noopener">Model</a>
+      </div>
+    </header>
+
+    <figure class="paper-figure teaser-figure container">
+      <button class="figure-button" data-zoom="assets/teaser.webp" data-caption="Overview of PanoVideoBench, PanoVideoCoT, and PanoVideoReasoner." aria-label="Enlarge the paper overview figure"><img src="assets/teaser.webp" alt="Paper overview: panoramic capabilities, PanoVideoCoT synthesis, and PanoVideoReasoner results." width="2600" height="1589" fetchpriority="high"></button>
+      <figcaption>PanoVideoBench evaluates how models find and connect evidence across direction and time. PanoVideoCoT turns verified sphere-time evidence and solution trajectories into reasoning supervision.</figcaption>
+    </figure>
+
+    <section id="abstract" class="section container abstract-section">
+      <h2>Abstract</h2>
+      <p id="abstract-text"></p>
+    </section>
+
+    <section id="benchmark" class="section container">
+      <h2>PanoVideoBench</h2>
+      <p>PanoVideoBench contains <strong>1,000</strong> manually annotated four-choice questions from <strong data-stat="videos">223</strong> panoramic videos, spanning <span data-stat="hours">23.06 h</span>. The questions cover five categories and 15 question types, with diagnostic annotations for target search and panoramic capabilities.</p>
+      <figure class="paper-figure">
+        <button class="figure-button" data-zoom="assets/benchmark.webp" data-caption="Question composition and diagnostic coverage in PanoVideoBench." aria-label="Enlarge benchmark statistics"><img src="assets/benchmark.webp" alt="Distribution of all 15 question types and heatmaps relating search settings, semantic categories, and panoramic capabilities." loading="lazy" width="2600" height="1414"></button>
+        <figcaption>The sunburst reports the five semantic categories and 15 question types. The heatmaps cross evidence-search settings and semantic categories with five panoramic capabilities; percentages indicate dataset-wide frequency, and cells give question counts.</figcaption>
+      </figure>
+    </section>
+
+    <section id="dataset" class="section container">
+      <h2>PanoVideoCoT</h2>
+      <p>PanoVideoCoT contains <strong>13,465 QA–CoT pairs</strong> from <strong>2,063</strong> real panoramic videos, spanning 168.8 hours. The corpus includes verified sphere-time evidence and approximately 100K evidence nodes.</p>
+      <figure class="paper-figure">
+        <button class="figure-button" data-zoom="assets/dataset.webp" data-caption="Statistics of PanoVideoCoT." aria-label="Enlarge dataset statistics"><img src="assets/dataset.webp" alt="PanoVideoCoT statistics: source videos, angular evidence span, search settings, CoT lengths, and joint panoramic capabilities." loading="lazy" width="2600" height="1039"></button>
+        <figcaption>Source-video plots summarize duration and resolution. The remaining plots report angular evidence span, target-search setting, CoT length, and the co-occurrence of panoramic capabilities.</figcaption>
+      </figure>
+    </section>
+
+    <section id="results" class="section container">
+      <h2>Main results</h2>
+      <p>PanoVideoReasoner reaches <strong>55.7%</strong> on PanoVideoBench, improving its Qwen3.5-9B backbone by 12.5 points and the previous SOTA by 2.6 points.</p>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="PanoVideoBench model comparison. Scroll horizontally on small screens.">
+        <table class="results-table">
+          <caption>Accuracy (%) on PanoVideoBench.</caption>
+          <thead><tr><th scope="col">Model</th><th scope="col">Overall</th><th scope="col">APP</th><th scope="col">SPA</th><th scope="col">ACT</th><th scope="col">MOT</th><th scope="col">TEM</th></tr></thead>
+          <tbody id="results-body"></tbody>
+        </table>
+      </div>
+      <p class="table-note">APP: appearance and detail; SPA: spatial and viewpoint reasoning; ACT: action and state; MOT: motion and identity tracking; TEM: spatio-temporal events. Best results in each column are bold.</p>
+      <noscript><p>The complete comparison is available in the <a href="assets/paper.pdf">paper PDF</a>.</p></noscript>
+    </section>
+
+    <section id="examples" class="section container">
+      <h2>Examples</h2>
+      <div class="case-switch" role="tablist" aria-label="Select a qualitative example"><button role="tab" id="case-tab-0" aria-controls="case-panel" aria-selected="true" data-case="0" class="active">Motion &amp; orientation</button><button role="tab" id="case-tab-1" aria-controls="case-panel" aria-selected="false" data-case="1" tabindex="-1">Fine-grained recognition</button><button role="tab" id="case-tab-2" aria-controls="case-panel" aria-selected="false" data-case="2" tabindex="-1">Cross-time aggregation</button></div>
+      <article id="case-panel" role="tabpanel" aria-labelledby="case-tab-0">
+        <div class="case-question-block">
+          <h3 id="case-question"></h3>
+          <ol class="case-options" id="case-options" aria-label="Answer options"></ol>
+        </div>
+        <figure class="paper-figure case-figure"><button class="figure-button" id="case-zoom" aria-label="Enlarge selected video frames"><img id="case-image" alt="Selected panoramic video frames for the current question" width="2400" height="496" loading="lazy"></button><figcaption id="case-caption"></figcaption></figure>
+        <div class="answer-grid"><div class="answer ours-answer"><strong>PanoVideoReasoner</strong><p id="case-answer"></p></div><div class="answer"><strong>Qwen3.8-27B</strong><p id="case-baseline"></p></div></div>
+        <details class="reasoning-details"><summary>Reasoning</summary><p id="case-reasoning"></p></details>
+      </article>
+    </section>
+    <section id="citation" class="section container">
+      <h2>BibTeX</h2>
+      <pre class="citation-code"><code>TBD</code></pre>
+    </section>
+  </main>
+  <footer class="container"><p></p><a href="#top">Back to top</a></footer>
+  <dialog class="figure-dialog" id="figure-dialog" aria-labelledby="dialog-caption"><div class="dialog-toolbar"><p id="dialog-caption"></p><div class="dialog-controls"><button type="button" id="toggle-figure-size" aria-pressed="false">Actual size</button><button type="button" id="close-dialog" aria-label="Close enlarged figure">Close</button></div></div><div class="dialog-image-wrap"><img id="dialog-image" alt=""></div></dialog>
+</body>
+</html>
